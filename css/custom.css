@@ -1,106 +1,156 @@
-/*html, body, .esri-view {
-		padding: 0;
-		margin: 0;
-		height: 100%;
-		width: 100%;
+#lightbulb {
+  font-size: 100px;
+  display: block;
+  text-align: center;
 }
 
-body{
-	background-color: #ECECEC;
+h1 {
+  padding: 0;
+  margin: 10px 0;
 }
 
-md-icon{
-	color:white;
+.chat-user-avatar {
+  font-size: 40px;
+  background: #ccc;
+  padding: 5px 10px;
 }
 
-.page-content {
-    background-color: #ECECEC;
+.feature-icon {
+  font-size: 44px;
+  padding: 0;
+  line-height: 68px;
+  width: 72px;
+  text-align: center;
+  opacity: .8;
+  border: 3px solid;
+  border-radius: 200px;
+  height: 72px;
+  margin-bottom: 20px;
 }
 
-.panel-widget {
-  background-color: white;
-	max-width: 500px;
-	min-height: 400px;
+.feature-icon.fa-gamepad {
+  line-height: 60px;
 }
 
-.panel-widget-toolbar {
-	box-shadow: none;
-	margin: 0;
-	background-color: white !important;
+.feature-icon.fa-tachometer {
+  line-height: 60px;
 }
 
-.panel-widget-title {
-	color: #7A7A7A;
-}*/
-
-
-.page{
-    bottom:0;
-    padding-top:200px;
-    position:absolute;
-    text-align:center;
-    top:0;
-    width:100%;
+.app-content-loading {
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  background: #fff;
+  position: relative;
 }
 
-.page-launch      { background:#00D0BC; color:#00907c; }
-.page-map     { background:#E59400; color:#a55400; }
-
-/* ANIMATIONS
-============================================================================= */
-
-/* leaving animations ----------------------------------------- */
-
-/* slide in from the bottom */
-@keyframes slideOutLeft {
-	  from    { transform:translateX(0); }
-    to      { transform: translateX(100%); }
+.loading-spinner {
+  position: absolute;
+  font-size: 50px;
+  left: 50%;
+  top: 50%;
+  margin-left: -25px;
+  margin-top: -25px;
 }
 
-
-/* entering animations --------------------------------------- */
-/* scale up */
-@keyframes scaleUp {
-    from    { opacity: 0.3; -webkit-transform: scale(0.8); }
-}
-
-/* slide in from the right */
-@keyframes slideOutRight {
-    from    { transform:translateX(0%); }
-    to      { transform: translateX(-100%); }
+.carousel-example-content {
+  position: absolute;
+  font-size: 50px;
+  line-height: 50px;
+  width: 100%;
+  text-align: center;
+  top: 50%;
+  margin-top: -50px;
 }
 
 
-/* slide in from the right */
-@keyframes slideInRight {
-    from    { transform:translateX(100%); }
-    to      { transform: translateX(0); }
+.carousel-item {
+  display: block;
+  color: #444;
+  background: #f4f4f4;
+  box-shadow: 0px 0px 3px rgba(0,0,0,0.5);
+  -webkit-transition: opacity 0.3s;
+  -moz-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+  opacity: 1;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 
-/* slide in from the bottom */
-@keyframes slideInUp {
-    from    { transform:translateY(100%); }
-    to      { transform: translateY(0); }
+.carousel {
+  padding: 20px;
+  overflow: visible;
 }
 
-.ng-enter       { z-index: 8888; }
-.ng-leave       { z-index: 9999; }
+.carousel-inner {
+  position: relative;
+  overflow: visible;
+}
 
-/* page specific animations ------------------------ */
+.carousel>.item, .carousel-item {
+  top: 0;
+  left: 0;
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+}
 
-/* launch -------------------------- */
-/*.page-launch.ng-leave        { animation:slideOutLeft 0.5s both ease-in; }*/
-/*.page-launch.ng-enter         { animation: scaleUp 0.5s both ease-in; }
-.page-launch.ng-leave         { transform-origin: 0% 0%; animation: rotateFall 1s both ease-in; }*/
-.page-launch.ng-leave 		  { animation:slideOutRight 0.5s both ease-in; }
+.carousel-item {
+  -webkit-transition: -webkit-transform 500ms;
+  -moz-transition: -moz-transform 500ms;
+  transition: transform 500ms;
+}
 
+[drag-to-dismiss]{
+  transform: translate(0,0); /* NOTE: this is required to prevent mobile webkit issues */ 
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: opacity 300ms, -webkit-transform 300ms;
+  -moz-transition: opacity 300ms, -moz-transform 300ms;
+  transition: opacity 300ms, transform 300ms;
+  opacity: 1;
+}
 
-/* about ------------------------ */
-/*.page-contact.ng-enter        { animation:slideInRight 0.5s both ease-in; }
-.page-contact.ng-leave        { animation:slideOutLeft 0.5s both ease-in; }*/
+.notices-container {
+  overflow-x: hidden;
+}
 
-/* contact ---------------------- */
-/*.page-map.ng-leave      { transform-origin: 50% 50%; animation: rotateOutNewspaper .5s both ease-in; }*/
-.page-map.ng-enter      { animation:slideInRight 0.5s both ease-in; }
-.page-map.ng-leave 		  { animation:slideOutLeft 0.5s both ease-in; }
+.dismiss {
+  -webkit-transition: opacity 300ms, -webkit-transform 300ms;
+  -moz-transition: opacity 300ms, -moz-transform 300ms;
+  transition: opacity 300ms, transform 300ms;
+  opacity: 0.5;
+}
+
+.dismitted {
+  -webkit-transition: opacity 300ms, -webkit-transform 300ms;
+  -moz-transition: opacity 300ms, -moz-transform 300ms;
+  transition: opacity 300ms, transform 300ms;
+  opacity: 0;
+}
+
+.list-group-item-home {
+  padding: 20px; 
+}
+
+pre {
+  text-align: left !important;
+}
+
+input.scrollable-header {
+  border-bottom: 3px solid #ccc;
+}
+
+.toucharea {width: 100%; height: 100%;}
