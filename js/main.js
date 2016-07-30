@@ -11,6 +11,7 @@ app.run(function($transform) {
 
 app.config(function($routeProvider) {
   $routeProvider.when('/',              {templateUrl: 'pages/home.html', reloadOnSearch: false});
+  $routeProvider.when('/options',       {templateUrl: 'pages/options.html', reloadOnSearch: false});
   $routeProvider.when('/scroll',        {templateUrl: 'pages/scroll.html', reloadOnSearch: false});
   $routeProvider.when('/toggle',        {templateUrl: 'pages/toggle.html', reloadOnSearch: false});
   $routeProvider.when('/tabs',          {templateUrl: 'pages/tabs.html', reloadOnSearch: false});
