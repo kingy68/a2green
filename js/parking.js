@@ -53,7 +53,7 @@ app.controller('parkingController', function($http, $timeout, $q) {
     return deferred.promise;
   }
 
-  var data = readTextFile('../static/pi.txt');
+  var data = readTextFile('static/pi.txt');
   data.then(function(res) {
     console.log(res);
 
