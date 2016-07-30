@@ -1,0 +1,14 @@
+      Saturday          , 30               , July              , 2016             , 19:00                                                                                                                       
+          Adelaide,      Adelaide CBD,                  CBD,                 cbd_dm.jpg,    NM,      0.36,    0.020,     NM,       4.8,     1.5,      33                                                        
+          Adelaide,     Western Adelaide,               Netley,               net_dm.jpg,  0.004,    NM,      0.017,     NM,      13.5,     8.6,      36                                                        
+          Adelaide,   Northwestern Adelaide,          Le Fevre 1,            lef1_dm.jpg,   NM,      NM,       NM,       NM,      21.0,     9.0,      41                                                        
+          Adelaide,   Northwestern Adelaide,          Le Fevre 2,            lef2_dm.jpg,  0.013,    NM,      0.002,    0.000,    16.0,     5.0,      40                                                        
+          Adelaide,     Northern Adelaide,             Elizabeth,             eli_dm.jpg,  0.010,    0.07,    0.007,     NM,      16.9,     8.0,      27                                                        
+          Adelaide,   Northeastern Adelaide,           Northfield,            nor_dm.jpg,  0.010,    NM,      0.011,    0.000,    NM,       NM,        10                                                       
+          Adelaide,     Eastern Adelaide,             Kensington,            ken_dm.jpg,    NA,      NM,      0.008,     NM,      17.6,     NM,       30                                                        
+          Adelaide,     Southern Adelaide,             Christies,             chr_dm.jpg,  0.017,    NM,      0.002,     NM,      11.1,     NM,       33                                                        
+          Adelaide,      Mobile Station,             Sellicks Beach,         seb_dm.jpg,    NM,      NM,       NM,       NM,      14.5,     4.6,      24                                                        
+          Country,       Spencer Gulf,             Whyalla Schulz Res,      why_s_dm.jpg,   NM,      NM,       NM,       NM,       9.7,     NM,       21                                                        
+          Country,       Spencer Gulf,              Whyalla Walls St,       why_w_dm.jpg,   NM,      NM,       NM,       NM,      10.4,     NM,       28                                                        
+          Country,       Spencer Gulf,             Port Pirie Oliver St,     ptp_o_dm.jpg,  NM,      NM,       NM,      0.048,    14.7,     NM,       43                                                        
+          Country,       Spencer Gulf,            Port Pirie The Terrace,    ptp_t_dm.jpg,  NM,      NM,       NM,       NM,      18.4,     NM,       23                                                        
