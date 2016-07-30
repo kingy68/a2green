@@ -1,4 +1,9 @@
-body{
+body
+{
+  background-color: #a0a0a0;
+}
+
+div, list-group-item-home, .list-group-item, .list-group-item-home, .section{
     background-color: #daf0c2;
 }
 
@@ -12,14 +17,16 @@ body{
   text-overflow: ellipsis;
 }}
 
-.centerContentDiv
+.mainContentDiv
 {
   position: absolute;
+  height:100%;
+  width:100%;
   top: 50%;
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
-  max-width: 700px;
+  max-width: 800px;
 }
 
 .btn{
@@ -34,11 +41,22 @@ body{
   border-color: #FCC64C;
 }
 
-.navbar-app .btn-navbar, .navbar-app .btn, a, .navbar-app{
-  color: #617566;
+.navbar, .navbar-brand {
+  background-color: #f5fceb;
 }
 
-.navbar-app .btn-navbar:hover, .navbar-app .btn:hover, .btn-group>.btn-default.active, .btn-group>.btn-default:focus, .btn-group>.btn-default.active:hover, .btn-group>.btn-default.active:focus{
+.btn-navbar{
+  height:50px;
+}
+
+
+
+.navbar-app .btn-navbar, .navbar-app .btn, a, .navbar-app{
+  color: #617566;
+  background-color: #f5fceb;
+}
+
+.btn:focus, .btn:active:focus, .navbar-app .btn-navbar:hover, .navbar-app .btn:hover, .btn-group>.btn-default.active, .btn-group>.btn-default:focus, .btn-group>.btn-default.active:hover, .btn-group>.btn-default.active:focus{
   background-color: #FCC64C;
   border-color: #FCC64C;
   color: #fff;
@@ -64,6 +82,10 @@ body{
     color: #617566;
 }
 
+.navbarlink{
+    height: 47px;
+    background: none !important;
+}
 
 #lightbulb {
   font-size: 100px;
@@ -107,7 +129,7 @@ h1 {
   text-align: center;
   height: 100%;
   width: 100%;
-  background: #fff;
+  background: none;
   position: relative;
 }
 
