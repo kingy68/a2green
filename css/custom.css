@@ -162,6 +162,7 @@ input.scrollable-header {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 .scrollable{
   padding-top: 50px;
 }
@@ -182,6 +183,15 @@ input.scrollable-header {
 .navbar-app .btn-navbar, .navbar-app .btn {
     color: #fff;
 =======
+=======
+.list-group-item-small {
+  padding: 0px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+/* BOOTSTRAP CSS */
+>>>>>>> git/backup
 .row {
   margin-left: 0px;
   margin-right: 0px;
