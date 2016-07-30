@@ -1,0 +1,14 @@
+<div class="navbar navbar-app navbar-absolute-top">
+  <div class="navbar-brand navbar-brand-center" ui-yield-to="title">Map</div>
+</div>
+
+<div class="scrollable">
+	<div class="scrollable-content">
+		<div map-lazy-load="https://maps.google.com/maps/api/js"
+		  map-lazy-load-params="{{googleMapsUrl}}">
+		  <ng-map center="41,-87" zoom="3"></ng-map>
+		</div>
+	</div>
+
+
+</div>

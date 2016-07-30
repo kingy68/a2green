@@ -12,6 +12,8 @@ app.run(function($transform) {
 app.config(function($routeProvider) {
   $routeProvider.when('/',              {templateUrl: 'pages/launch.html', reloadOnSearch: false});
   $routeProvider.when('/options',       {templateUrl: 'pages/options.html', reloadOnSearch: false});
+  $routeProvider.when('/map',           {templateUrl: 'pages/map.html', reloadOnSearch: false});
+  $routeProvider.when('/parking',       {templateUrl: 'pages/parking.html', reloadOnSearch: false});
   $routeProvider.when('/scroll',        {templateUrl: 'pages/scroll.html', reloadOnSearch: false});
   $routeProvider.when('/toggle',        {templateUrl: 'pages/toggle.html', reloadOnSearch: false});
   $routeProvider.when('/tabs',          {templateUrl: 'pages/tabs.html', reloadOnSearch: false});
@@ -229,16 +231,14 @@ app.directive('dragMe', ['$drag', function($drag){
   };
 }]);
 
-//
-// For this trivial demo we have just a unique MainController
-// for everything
-//
-app.controller('MainController', function($rootScope, $scope, NgMap){
 
+app.controller('MainController', function($rootScope, $scope, NgMap, SharedState){
+
+  //set the google url and key
   var apiKey = 'AIzaSyC5a7ymlxbZGCuacce1JjbaOdoqc16E9dU';
   $scope.googleMapsUrl='https://maps.googleapis.com/maps/api/js?key='+ apiKey;
 
-
+  SharedState.initialize($scope, "travelingNow", 1);
 
 
 
