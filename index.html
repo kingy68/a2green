@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="main">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+
+        <title ng:bind-template="{{title}}"></title>
+
+        <!-- load Esri JSAPI -->
+        <script src="//js.arcgis.com/4.0/"></script>
+        <!-- load AngularJS Libraries -->
+        <script src="js/angular.min.js"></script>
+        <script src="js/angular-route.min.js"></script>
+        <script src="js/angular-animate.min.js"></script>
+        <script src="js/angular-aria.min.js"></script>
+        <script src="js/angular-messages.min.js"></script>
+        <!-- load angular-esri-map -->
+        <script src="js/angular-esri-map.min.js"></script>
+        <!-- Angular Material Library -->
+        <script src="js/angular-material.min.js"></script>
+        <!-- custom components -->
+        <script src="js/components.js"></script>
+        <!-- main js -->
+        <script src="js/main.js"></script>
+
+        <!-- material design css -->
+        <link rel="stylesheet" href="css/angular-material.min.css">
+        <!-- google icons-->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" >
+        <!-- esri css -->
+        <link rel="stylesheet" href="css/esri.css">
+        <!-- custom css -->
+        <link rel="stylesheet" href="css/custom.css">
+    </head>
+    <body>
+	      <div class="page {{ pageClass }}" ng-view></div>
+    </body>
+</html>

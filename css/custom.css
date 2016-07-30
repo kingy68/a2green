@@ -1,0 +1,97 @@
+/*html, body, .esri-view {
+		padding: 0;
+		margin: 0;
+		height: 100%;
+		width: 100%;
+}
+
+body{
+	background-color: #ECECEC;
+}
+
+md-icon{
+	color:white;
+}
+
+.page-content {
+    background-color: #ECECEC;
+}
+
+.panel-widget {
+  background-color: white;
+	max-width: 500px;
+	min-height: 400px;
+}
+
+.panel-widget-toolbar {
+	box-shadow: none;
+	margin: 0;
+	background-color: white !important;
+}
+
+.panel-widget-title {
+	color: #7A7A7A;
+}*/
+
+
+.page{
+    bottom:0;
+    padding-top:200px;
+    position:absolute;
+    text-align:center;
+    top:0;
+    width:100%;
+}
+
+.page-launch      { background:#00D0BC; color:#00907c; }
+.page-map     { background:#E59400; color:#a55400; }
+
+/* ANIMATIONS
+============================================================================= */
+
+/* leaving animations ----------------------------------------- */
+
+/* slide in from the bottom */
+@keyframes slideOutLeft {
+	  from    { transform:translateX(0); }
+    to      { transform: translateX(100%); }
+}
+
+
+/* entering animations --------------------------------------- */
+/* scale up */
+@keyframes scaleUp {
+    from    { opacity: 0.3; -webkit-transform: scale(0.8); }
+}
+
+/* slide in from the right */
+@keyframes slideInRight {
+    from    { transform:translateX(100%); }
+    to      { transform: translateX(-100%); }
+}
+
+/* slide in from the bottom */
+@keyframes slideInUp {
+    from    { transform:translateY(100%); }
+    to      { transform: translateY(0); }
+}
+
+.ng-enter       { z-index: 8888; }
+.ng-leave       { z-index: 9999; }
+
+/* page specific animations ------------------------ */
+
+/* launch -------------------------- */
+/*.page-launch.ng-leave        { animation:slideOutLeft 0.5s both ease-in; }*/
+/*.page-launch.ng-enter         { animation: scaleUp 0.5s both ease-in; }
+.page-launch.ng-leave         { transform-origin: 0% 0%; animation: rotateFall 1s both ease-in; }*/
+
+
+/* about ------------------------ */
+/*.page-contact.ng-enter        { animation:slideInRight 0.5s both ease-in; }
+.page-contact.ng-leave        { animation:slideOutLeft 0.5s both ease-in; }*/
+
+/* contact ---------------------- */
+/*.page-map.ng-leave      { transform-origin: 50% 50%; animation: rotateOutNewspaper .5s both ease-in; }*/
+/*.page-map.ng-enter      { animation:slideInRight 0.5s ease-in; }*/
+.page-map.ng-leave 		  { animation:slideOutLeft 0.5s both ease-in; }
