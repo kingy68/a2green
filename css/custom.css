@@ -1,12 +1,10 @@
-#lightbulb {
-  font-size: 100px;
-  display: block;
-  text-align: center;
-}
-
 h1 {
   padding: 0;
   margin: 10px 0;
+}
+
+h2 {
+  padding-bottom: 10px;
 }
 
 .chat-user-avatar {
@@ -161,4 +159,25 @@ input.scrollable-header {
 
 .has-navbar-top .app-body {
     padding-top: 0px;
+}
+
+.scrollable{
+  padding-top: 50px;
+}
+
+.has-success .form-control {
+    border-color: none;
+  }
+
+  .navbar-app {
+    min-height: 50px;
+    border-color: #007aff;
+    background: #007aff;
+    border-width: 1px;
+    border-style: solid;
+    color: #fff;
+}
+
+.navbar-app .btn-navbar, .navbar-app .btn {
+    color: #fff;
 }

@@ -1,0 +1,38 @@
+<div class="navbar navbar-app navbar-absolute-top">
+  <div class="navbar-brand navbar-brand-center" ui-yield-to="title">Destination</div>
+</div>
+
+<div class="scrollable">
+ <div class="scrollable-content section"/>
+ <div style="max-width:500px;" class="centerBlock">
+  <img src="http://placehold.it/350x150" style="padding-top:50px;padding-bottom:50px;">
+  <h2>Where you heading bro?</h2>
+  <fieldset style="padding-bottom:10px;">
+      <div class="form-group"> <input class="form-control" placeholder="Where are you now?"></div>
+      <div class="form-group"><input class="form-control" placeholder="Where are you going?"></div>
+  </fieldset>
+
+  <div class="btn-group justified nav-tabs" >
+    <a
+       ui-turn-on='lightbulb'
+       ui-class="{'active': lightbulb}"
+       class="btn btn-default" href>
+        Now
+    </a>
+    <a
+       ui-turn-off='lightbulb'
+       ui-class="{'active': !lightbulb}"
+       class="btn btn-default" href>
+        Later
+    </a>
+  </div>
+</div>
+</div>
+</div>
+
+
+<div class="navbar navbar-app navbar-absolute-bottom">
+  <div class="btn-group justified">
+    <a href="#/forms" class="btn btn-navbar">NEXT</a>
+  </div>
+</div>
