@@ -234,12 +234,18 @@ app.directive('dragMe', ['$drag', function($drag){
 //
 app.controller('MainController', function($rootScope, $scope, NgMap){
 
-  $scope.swiped = function(direction) {
-    alert('Swiped ' + direction);
-  };
-
   var apiKey = 'AIzaSyC5a7ymlxbZGCuacce1JjbaOdoqc16E9dU';
   $scope.googleMapsUrl='https://maps.googleapis.com/maps/api/js?key='+ apiKey;
+
+
+
+
+
+
+    $scope.swiped = function(direction) {
+      alert('Swiped ' + direction);
+    };
+
 
   // User agent displayed in home page
   $scope.userAgent = navigator.userAgent;
