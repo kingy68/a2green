@@ -232,13 +232,42 @@ app.directive('dragMe', ['$drag', function($drag){
 }]);
 
 
-app.controller('MainController', function($rootScope, $scope, NgMap, SharedState){
+app.controller('MainController', function($rootScope, $scope, NgMap){
 
   //set the google url and key
   var apiKey = 'AIzaSyC5a7ymlxbZGCuacce1JjbaOdoqc16E9dU';
   $scope.googleMapsUrl='https://maps.googleapis.com/maps/api/js?key='+ apiKey;
+  $scope.googleMapsUrl='https://maps.googleapis.com/maps/api/geocode/json?key='+ apiKey;
 
-  SharedState.initialize($scope, "travelingNow", 1);
+  /*var service = new google.maps.places.AutocompleteService();
+  var geocoder = new google.maps.Geocoder();
+
+  $(field).typeahead({
+  source: function(query, process) {
+    service.getPlacePredictions({ input: query }, function(predictions, status) {
+      if (status == google.maps.places.PlacesServiceStatus.OK) {
+        process($.map(predictions, function(prediction) {
+          return prediction.description;
+        }));
+      }
+    });
+  },
+  updater: function (item) {
+    geocoder.geocode({ address: item }, function(results, status) {
+      if (status != google.maps.GeocoderStatus.OK) {
+        alert('Cannot find address');
+        return;
+      }
+      map.setCenter(results[0].geometry.location);
+      map.setZoom(12);
+    });
+    return item;
+  }
+});*/
+
+
+
+  $scope.travellingNow = true;
 
 
 
