@@ -10,12 +10,8 @@ app.run(function($transform) {
 });
 
 app.config(function($routeProvider) {
-<<<<<<< HEAD
   $routeProvider.when('/',              {templateUrl: 'pages/launch.html', reloadOnSearch: false});
-=======
-  $routeProvider.when('/',              {templateUrl: 'pages/home.html', reloadOnSearch: false});
   $routeProvider.when('/options',       {templateUrl: 'pages/options.html', reloadOnSearch: false});
->>>>>>> 133531acd2533e3eb60caa62af85992044ae7893
   $routeProvider.when('/scroll',        {templateUrl: 'pages/scroll.html', reloadOnSearch: false});
   $routeProvider.when('/toggle',        {templateUrl: 'pages/toggle.html', reloadOnSearch: false});
   $routeProvider.when('/tabs',          {templateUrl: 'pages/tabs.html', reloadOnSearch: false});
