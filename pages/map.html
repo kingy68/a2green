@@ -4,11 +4,10 @@
 
 <div class="scrollable">
 	<div class="scrollable-content">
-		<div map-lazy-load="https://maps.google.com/maps/api/js"
-		  map-lazy-load-params="{{googleMapsUrl}}">
-		  <ng-map center="41,-87" zoom="3"></ng-map>
+		<div id="map-container" ng-controller="mapController" map-lazy-load="https://maps.google.com/maps/api/js"
+		  map-lazy-load-params="{{googleMapsUrl}}"
+      style="position:absolute; display:block; width:100%; height:100%; top: 0; left: 0">
+		  <ng-map center="-35,138" zoom="6" style="height: 100%;"></ng-map>
 		</div>
 	</div>
-
-
 </div>
