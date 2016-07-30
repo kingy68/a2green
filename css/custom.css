@@ -65,10 +65,18 @@ md-icon{
 }
 
 /* slide in from the right */
-@keyframes slideInRight {
-    from    { transform:translateX(100%); }
+@keyframes slideOutRight {
+    from    { transform:translateX(0%); }
     to      { transform: translateX(-100%); }
 }
+
+
+/* slide in from the right */
+@keyframes slideInRight {
+    from    { transform:translateX(100%); }
+    to      { transform: translateX(0); }
+}
+
 
 /* slide in from the bottom */
 @keyframes slideInUp {
@@ -85,6 +93,7 @@ md-icon{
 /*.page-launch.ng-leave        { animation:slideOutLeft 0.5s both ease-in; }*/
 /*.page-launch.ng-enter         { animation: scaleUp 0.5s both ease-in; }
 .page-launch.ng-leave         { transform-origin: 0% 0%; animation: rotateFall 1s both ease-in; }*/
+.page-launch.ng-leave 		  { animation:slideOutRight 0.5s both ease-in; }
 
 
 /* about ------------------------ */
@@ -93,5 +102,5 @@ md-icon{
 
 /* contact ---------------------- */
 /*.page-map.ng-leave      { transform-origin: 50% 50%; animation: rotateOutNewspaper .5s both ease-in; }*/
-/*.page-map.ng-enter      { animation:slideInRight 0.5s ease-in; }*/
+.page-map.ng-enter      { animation:slideInRight 0.5s both ease-in; }
 .page-map.ng-leave 		  { animation:slideOutLeft 0.5s both ease-in; }
