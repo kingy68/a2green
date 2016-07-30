@@ -182,6 +182,12 @@ input.scrollable-header {
   color: #fff;
 }
 
+.list-group-item-small {
+  padding: 0px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
 .row {
   margin-left: 0px;
   margin-right: 0px;
