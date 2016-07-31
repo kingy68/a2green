@@ -12,7 +12,7 @@
   <div class="scrollable">
     <div class="scrollable-content">
       <div class="centerContentDiv" style="width: 100%;">
-        <div class="list-group-item list-group-item-home">
+        <div class="transport-mode-item list-group-item list-group-item-home">
           <div class="row">
             <h1 style="float: left;">Drive</h1>
             <h1 style="float: right;">{{driveTime}}</h1>
@@ -50,14 +50,14 @@
               </div>
             </div>
           </div>
-          <div class="section" style="text-align: left; border-top: 1px solid black;">
+          <div class="section" style="text-align: left; border-top: 1px solid #CCCCCC;">
             <div style="clear: both;">
               <p style="float: left; padding-top: 10px;">Find your park</p>
               <a href="#/parking" class="btn btn-navbar" style="float: right; height: 35px;">GO</a>
             </div>
           </div>
         </div>
-        <div class="list-group-item list-group-item-home" style="text-align: left;">
+        <div class="transport-mode-item list-group-item list-group-item-home" style="text-align: left; ">
           <div class="row">
             <h1 style="float: left;">Metro</h1>
             <h1 style="float: right;">{{metroTime}}</h1>
@@ -67,19 +67,19 @@
               <img src="{{metroImage}}"/>
             </div>
             <div class="col-xs-9">
-              <p>{{metroInfo}}</p>
-              <p>{{metroDept}}</p>
+              <p><b>{{metroInfo}}</b></p>
+              <p><b>{{metroDept}}</b></p>
             </div>
           </div>
         </div>
-        <div class="list-group-item list-group-item-home" style="text-align: left;">
+        <div class="transport-mode-item list-group-item list-group-item-home" style="text-align: left;">
           <div class="row">
             <h1 style="float: left;">Bike</h1>
             <h1 style="float: right;">{{bikeTime}}</h1>
           </div>
           <div class="row" style="padding-top: 20px;">
             <div class="col-xs-3">
-              <img src="{{bikeImage}}"/>
+              <img style="width: 89px; margin-left: -10px;" src="{{bikeImage}}"/>
             </div>
             <div class="col-xs-9">
               <p><b>Est. Calories Burn: </b></p>
@@ -92,7 +92,7 @@
   </div>
   <div class="navbar navbar-app navbar-absolute-bottom">
     <div class="btn-group justified">
-      <a href="#/" class="btn btn-navbar">CHANGE DESTINATION</a>
+      <a href="#/start" class="btn btn-navbar">CHANGE DESTINATION</a>
     </div>
   </div>
 </div>
