@@ -1,4 +1,26 @@
-app.controller('parkingController', function($http, $timeout, $q) {
+app.controller('parkingController', function($scope, $http, $timeout, $q, $location) {
+
+  $scope.travelOptions.driving.selectedPark = [];
+
+  // Set streetParking
+  $scope.streetSpaces = $scope.travelOptions.driving.parkingOptions[0].Spots;
+  $scope.streetTicketed = $scope.travelOptions.driving.parkingOptions[0].Ticket = 0 ? 'Free' : 'Required';
+  $scope.streetLimit = $scope.travelOptions.driving.parkingOptions[0].Limit = 0 ? 'No Limit' : $scope.travelOptions.driving.parkingOptions[0].Limit.toString() + ' mins'
+
+  // Set Uparking
+  $scope.uParkSpaces = $scope.travelOptions.driving.parkingOptions[1].Capacity;
+  $scope.uParkName = $scope.travelOptions.driving.parkingOptions[1].Name;
+  $scope.uParkCost = '$' + $scope.travelOptions.driving.parkingOptions[1].Cost.toString();
+
+  $scope.clickedStreet = function() {
+    $scope.travelOptions.driving.selectedPark = [$scope.travelOptions.driving.parkingOptions[0].LatLng[0], $scope.travelOptions.driving.parkingOptions[0].LatLng[1]];
+    $location.path('/map');
+  }
+
+  $scope.clickedUpark = function() {
+    $scope.travelOptions.driving.selectedPark = [$scope.travelOptions.driving.parkingOptions[1].LatLng[0], $scope.travelOptions.driving.parkingOptions[1].LatLng[1]];
+    $location.path('/map');
+  }
 
   function readTextFile(file)
   {
@@ -62,7 +84,7 @@ app.controller('parkingController', function($http, $timeout, $q) {
       value: parseInt(res['AdelaideCBD'].index),
       min: 0,
       max: 200,
-      title: "AQI",
+      title: "Air Quality Index",
       levelColorsGradient: true
     });
   });
