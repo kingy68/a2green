@@ -9,6 +9,33 @@ app.run(function($transform) {
   window.$transform = $transform;
 });
 
+app.run(function($rootScope, $window) {
+
+  $rootScope.$on("$locationChangeStart", function (event, next, current) {
+
+    // url slug : shortening the url to stuff that follows after "#"
+    console.log(current);
+    console.log(next);
+
+    current = current.slice( current.lastIndexOf('#')+1, current.length );
+    next =    next.slice( next.lastIndexOf('#')+1, next.length );
+
+    $rootScope.transitionClass = "RL";
+    $rootScope.backTransition = "LR";
+
+    if($rootScope.direction != 'f'){
+      $rootScope.transitionClass = "LR";
+      $rootScope.backTransition = "RL";
+    }
+
+    // save current page slug, so we can check next time whether "back" transition should be triggered
+    $rootScope.lastPage = current;
+
+    // log stuff
+    console.log("locationChange from:"+ current +" to:"+ next +" transition:"+ $rootScope.transitionClass +" backTransition:"+ $rootScope.backTransition);
+  });
+});
+
 app.config(function($routeProvider) {
   $routeProvider.when('/',              {templateUrl: 'pages/launch.html', reloadOnSearch: false});
   $routeProvider.when('/start',         {templateUrl: 'pages/start.html', reloadOnSearch: false});
@@ -235,6 +262,13 @@ app.directive('dragMe', ['$drag', function($drag){
 
 app.controller('MainController', function($rootScope, $scope, $location, $q, NgMap){
 
+  //transitions
+  $rootScope.direction = 'f';
+  $scope.go = function(path, direction) {
+    $rootScope.direction = direction;
+    $location.path(path);
+  };
+
   //set the google url and key
   var apiKey = 'AIzaSyC5a7ymlxbZGCuacce1JjbaOdoqc16E9dU';
   $scope.googleMapsUrl='https://maps.googleapis.com/maps/api/js?key='+ apiKey;
@@ -287,7 +321,7 @@ app.controller('MainController', function($rootScope, $scope, $location, $q, NgM
       origin: $scope.origin.text,
       destination: $scope.destination.text,
       travelMode: 'DRIVING'
-    }
+    };
 
     directionsService.route(directionsRequestDrive, function(resp, status) {
       console.log(resp);
@@ -320,6 +354,7 @@ app.controller('MainController', function($rootScope, $scope, $location, $q, NgM
         });
       }
     });
+
 
     // Get Metro info
     // var directionsRequestTrans = {
