@@ -385,8 +385,7 @@ app.controller('MainController', function($rootScope, $scope, $location, $q, NgM
 
     function calulateParkingOptions(x, y, time, day, requireTime, freeOnly) {
       var def = $q.defer();
-      $scope.travelOptions.driving.parkingOptions = ['number 1', 'number 2'];
-
+      
       var map;
       var layer;
 
