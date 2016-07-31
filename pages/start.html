@@ -13,14 +13,15 @@
         <div class="form-group"><input class="form-control" ng-model="destination.text" id="toAddressInput"  type="typeahead" placeholder="Where are you going?"></div>
     </fieldset>
 
-    <div class="btn-group justified nav-tabs" >
-      <a
+    <div class="btn-group justified nav-tabs" style="opacity:0.0" >
+      <a style="cursor: default;"
          ui-turn-on='travellingNow'
          ui-class="{'active': travellingNow}"
          class="btn btn-default" href>
           Now
       </a>
       <a
+        style="cursor: default;"
          ui-turn-off='travellingNow'
          ui-class="{'active': !travellingNow}"
          class="btn btn-default" href>
