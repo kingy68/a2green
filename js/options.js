@@ -86,4 +86,18 @@ app.controller('optionsController', function($scope, $http, $timeout) {
     document.getElementById('congestion-progress').style.width  ='0%';
     $scope.congestionWord = 'Doing 100KPH!';
   }
+
+  // Set metro image data
+  if ($scope.travelOptions.publicTrans.transMethod.search('Bus') != -1) {
+    $scope.metroImage = 'images/Bus.png';
+  } else {
+    $scope.metroImage = 'images/Train.png';
+  }
+
+  $scope.metroInfo = $scope.travelOptions.publicTrans.info;
+  $scope.metroDept = $scope.travelOptions.publicTrans.departureTime;
+
+  // Set bike data
+  $scope.bikeImage = 'images/Bike.png';
+  $scope.bikeCalories = $scope.travelOptions.bike.calories;
 });
