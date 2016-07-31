@@ -11,6 +11,8 @@ app.run(function($transform) {
 
 app.config(function($routeProvider) {
   $routeProvider.when('/',              {templateUrl: 'pages/launch.html', reloadOnSearch: false});
+  $routeProvider.when('/intro1',        {templateUrl: 'pages/launch1.html', reloadOnSearch: false});
+  $routeProvider.when('/intro2',        {templateUrl: 'pages/launch2.html', reloadOnSearch: false});
   $routeProvider.when('/start',         {templateUrl: 'pages/start.html', reloadOnSearch: false});
   $routeProvider.when('/options',       {templateUrl: 'pages/options.html', reloadOnSearch: false});
   $routeProvider.when('/map',           {templateUrl: 'pages/map.html', reloadOnSearch: false});

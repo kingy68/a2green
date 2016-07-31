@@ -8,6 +8,22 @@ body {
     padding:0;
 }
 
+.carousel-control.right{
+  background: none;
+}
+
+.carousel-control.left{
+  background: none;
+}
+
+.carousel-control .icon-next, .carousel-control .glyphicon-chevron-right{
+  color: #617566;
+}
+
+.carousel-control .icon-prev, .carousel-control .glyphicon-chevron-left {
+  color: #617566;
+}
+
 ng-map div{
   background-color: transparent;
 }
