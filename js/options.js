@@ -1,3 +1,4 @@
-app.controller('optionsController', function($http, $timeout) {
+app.controller('optionsController', function($scope, $http, $timeout) {
   console.log('OPTIONS!');
+  console.log($scope.travelOptions);
 });
