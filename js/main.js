@@ -357,8 +357,10 @@ app.controller('MainController', function($rootScope, $scope, $location, $q, $in
             $scope.travelOptions.driving.parkingOptions.push(nearest);
 
             var getUpark = findNearestUPark($scope.travelOptions.driving.destination.x, $scope.travelOptions.driving.destination.y,
-                (arrivalTime.getHours().toString() + arrivalTime.getMinutes().toString()), arrivalTime.getDay() == 0 ? 7 : arrivalTime.getDay(),
-                requiredParkingTime);
+                { time: (arrivalTime.getHours().toString() + arrivalTime.getMinutes().toString()),
+                  day: arrivalTime.getDay() == 0 ? 7 : arrivalTime.getDay(),
+                  requiredTime: requiredParkingTime
+                });
 
               getUpark.then(function(nearestUpark) {
                 $scope.travelOptions.driving.parkingOptions.push(nearestUpark);
