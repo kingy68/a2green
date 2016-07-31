@@ -4,8 +4,8 @@ app.controller('parkingController', function($scope, $http, $timeout, $q, $locat
 
   // Set streetParking
   $scope.streetSpaces = $scope.travelOptions.driving.parkingOptions[0].Spots;
-  $scope.streetTicketed = $scope.travelOptions.driving.parkingOptions[0].Ticket = 0 ? 'Free' : 'Required';
-  $scope.streetLimit = $scope.travelOptions.driving.parkingOptions[0].Limit = 0 ? 'No Limit' : $scope.travelOptions.driving.parkingOptions[0].Limit.toString() + ' mins'
+  $scope.streetTicketed = $scope.travelOptions.driving.parkingOptions[0].Ticket == 0 ? 'Free' : 'Required';
+  $scope.streetLimit = $scope.travelOptions.driving.parkingOptions[0].Limit == 0 ? 'No Limit' : $scope.travelOptions.driving.parkingOptions[0].Limit.toString() + ' mins'
 
   // Set Uparking
   $scope.uParkSpaces = $scope.travelOptions.driving.parkingOptions[1].Capacity;
