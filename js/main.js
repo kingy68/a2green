@@ -234,7 +234,7 @@ app.directive('dragMe', ['$drag', function($drag){
 
 
 app.controller('MainController', function($rootScope, $scope, $location, $q, NgMap){
-
+  console.log(NgMap);
   //set the google url and key
   var apiKey = 'AIzaSyC5a7ymlxbZGCuacce1JjbaOdoqc16E9dU';
   $scope.googleMapsUrl='https://maps.googleapis.com/maps/api/js?key='+ apiKey;
@@ -272,11 +272,11 @@ app.controller('MainController', function($rootScope, $scope, $location, $q, NgM
   };
 
   $scope.origin = {
-    text: '15 bentham street adelaide'
+    text: '25b second street brompton'
   };
 
   $scope.destination = {
-    text: '25b second street brompton'
+    text: '15 bentham street adeladie'
   };
 
   $scope.getData = function() {
@@ -313,10 +313,19 @@ app.controller('MainController', function($rootScope, $scope, $location, $q, NgM
             (arrivalTime.getHours().toString() + arrivalTime.getMinutes().toString()), arrivalTime.getDay() == 0 ? 7 : arrivalTime.getDay(),
             requiredParkingTime, false);
 
-        getOptions.then(function() {
+        getOptions.then(function(nearest) {
           console.log('PROCESSING COMPLETE');
+          console.log(nearest);
+          // You have to pay today!!
+          if (nearest.Ticket != 0) {
+            // Add on $6 for 2 hours paid parking
+            $scope.travelOptions.driving.cost += 6.00;
+          }
+
+          $scope.travelOptions.driving.parkingOptions.push(nearest);
+
           // Go to options page
-          // $location.path('/options');
+          $location.path('/options');
         });
       }
     });
@@ -376,12 +385,102 @@ app.controller('MainController', function($rootScope, $scope, $location, $q, NgM
 
     function calulateParkingOptions(x, y, time, day, requireTime, freeOnly) {
       var def = $q.defer();
-      console.log(x, y, time, day, requireTime, freeOnly);
       $scope.travelOptions.driving.parkingOptions = ['number 1', 'number 2'];
 
-      //TODO: james put your stuff in here!!
+      var map;
+      var layer;
 
+      findNearest(x, y, {'time': time, 'day': day, 'requiredTime': requireTime, 'onlyFree': freeOnly}, def);
+
+      function calculateGridNumbers(x, y) {
+
+        var minX = 138.5871718;
+        var minY = -34.936313;
+        var step = 0.00253622;
+
+        var offsetX = x - minX;
+        var offsetY = y - minY;
+        var gridX = Math.floor(offsetX / step)
+        var gridY = Math.floor(offsetY / step)
+        return [gridX, gridY];
+      };
+
+      function findNearest(x, y, options, def) {
+        minDistance = 100;
+        nearest = null;
+
+        carParks.features.forEach(function(feature) {
+          var geometry = feature.geometry;
+          var attributes = feature.properties;
+          // Check the attributes.
+          if (options) {
+            if (options.time) {
+              var fromTime = attributes.FromTime;
+              var toTime = attributes.ToTime;
+              if (fromTime < toTime && (options.time < fromTime || options.time > toTime))
+                return;
+              if (fromTime > toTime && (options.time < fromTime && options.time > toTime))
+                return;
+            };
+            if (options.onlyFree) {
+              var ticketValue = attributes.Ticket;
+              if (ticketValue == 1)
+                return;
+            };
+            if (options.day) {
+              var days = attributes.Days.toString();
+              if (!days.includes(options.day))
+                return;
+            };
+            if (options.time && options.requiredTime) {
+              limit = attributes.Limit;
+              if (limit > 0) {  // A time limit exists
+                var intendedLeaveTime = options.time + options.requiredTime;
+                if (intendedLeaveTime > attributes.ToTime) {
+                  // We spill into another set of rules.
+                  // TODO
+                } else {
+                  if (options.requiredTime > limit)
+                    return;
+                };
+              } else {
+                // Check if we spill over into another set of rules
+                // that does have a time limit.
+                // TODO
+              };
+            };
+
+            // Testing data only
+            if (options.origID) {
+              var originID = attributes.OrigID;
+              if (options.origID != originID)
+                return;
+            };
+          };
+
+          // Only one point
+          var featureX = geometry.coordinates[0];
+          var featureY = geometry.coordinates[1];
+          var dist = Math.sqrt(Math.abs(x-featureX) + Math.abs(y-featureY))
+          if (dist < minDistance) {
+            minDistance = dist;
+            nearest = feature;
+          };
+        });
+        var result = {
+          SourceID: nearest.properties.OrigID,
+          LatLng: [nearest.geometry.coordinates[0], nearest.geometry.coordinates[1]],
+          Days: nearest.properties.Days,
+          FromTime: nearest.properties.FromTime,
+          ToTime: nearest.properties.ToTime,
+          Limit: nearest.properties.Limit,
+          Ticket: nearest.properties.Ticket,
+          Spots: nearest.properties.Spots
+        };
+        def.resolve(result);
+        return result;
+      };
       return def.promise;
-    }
+    };
   };
 });
