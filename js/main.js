@@ -564,7 +564,8 @@ app.controller('MainController', function($rootScope, $scope, $location, $q, $in
           if (dist < minDistance) {
           	minDistance = dist;
           	var cost = location.getCost(options.day, options.time, options.requiredTime);
-          	nearest = { name: location.name, cost: cost, url: location.url };
+          	nearest = { Name: location.name, Cost: cost, Url: location.url };
+            nearest.LatLng = [location.lng, location.lat];
           };
         };
       });
@@ -572,14 +573,14 @@ app.controller('MainController', function($rootScope, $scope, $location, $q, $in
     	// Before we send back the "winner", get its capacity
     	$http({
     		method: "GET",
-    		url: nearest.url,
-    		dataType: "xml"
+    		url: nearest.Url
       }).then(function successCallback(xml) {
         console.log(xml);
         var re = /Textbox32="(\w+)"/
-        nearest.capacity = re.exec(xml.data)[1]
+        nearest.Capacity = re.exec(xml.data)[1]
         def.resolve(nearest);
       }, function errorCallback(resp) {
+        console.log(resp);
         nearest.capacity = 'Unknown';
         def.resolve(nearest);
         console.log('xml fetch error');
