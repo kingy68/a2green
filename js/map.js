@@ -5,19 +5,17 @@ app.controller('mapController', function($http, $timeout, NgMap) {
     console.log(evtMap);
     map = evtMap;
 
-    var apiKey = 'AIzaSyC5a7ymlxbZGCuacce1JjbaOdoqc16E9dU';
-
-    var dirRequest = 'origin=-34.56,138.36&destination=-34.59,138.41&mode=driving&key=' + apiKey;
-    var directionsService = new google.maps.DirectionsService();
-    console.log(directionsService);
-
-    var directionsRequest = {
-      origin: '7 Alison Avenue, Blackwood',
-      destination: '15 Bentham Street, Adelaide',
-      travelMode: 'DRIVING'
+    // Default to Victoria Square
+    var latitude = -34.928633;
+    var longitude = 138.599971;
+    if ($scope.zoomToCoords) {
+        latitude = $scope.zoomToCoords[1];
+        longitude = $scope.zoomToCoords[0];
     };
-    // directionsService.route(directionsRequest, function(resp, status) {
-    //   console.log(resp);
-    // });
+
+    var latLng = {lat: latitude, lng: longitude};
+    var marker = new google.maps.Marker({position: latLng, map: map});
+    map.setCenter(latLng);
+    map.setZoom(17);
   });
 });
