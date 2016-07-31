@@ -9,8 +9,8 @@
      <img src="images/Board_A.png" style="padding-top:50px;padding-bottom:50px;width:250px;">
     <h2>Where are you headed?</h2>
     <fieldset style="padding-bottom:10px;">
-        <div class="form-group"> <input class="form-control" id="fromAddressInput" type="typeahead" placeholder="Where are you now?"></div>
-        <div class="form-group"><input class="form-control" id="toAddressInput"  type="typeahead" placeholder="Where are you going?"></div>
+        <div class="form-group"> <input class="form-control" ng-model="origin.text" id="fromAddressInput" type="typeahead" placeholder="Where are you now?"></div>
+        <div class="form-group"><input class="form-control" ng-model="destination.text" id="toAddressInput"  type="typeahead" placeholder="Where are you going?"></div>
     </fieldset>
 
     <div class="btn-group justified nav-tabs" >
@@ -34,6 +34,6 @@
 
 <div class="navbar navbar-app navbar-absolute-bottom">
   <div class="btn-group justified">
-    <a href="#/options" class="btn btn-navbar">NEXT</a>
+    <a class="btn btn-navbar" ng-click="getData()">NEXT</a>
   </div>
 </div>

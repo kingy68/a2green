@@ -233,136 +233,155 @@ app.directive('dragMe', ['$drag', function($drag){
 }]);
 
 
-app.controller('MainController', function($rootScope, $scope, NgMap){
+app.controller('MainController', function($rootScope, $scope, $location, $q, NgMap){
 
   //set the google url and key
   var apiKey = 'AIzaSyC5a7ymlxbZGCuacce1JjbaOdoqc16E9dU';
   $scope.googleMapsUrl='https://maps.googleapis.com/maps/api/js?key='+ apiKey;
   $scope.googleMapsUrl='https://maps.googleapis.com/maps/api/geocode/json?key='+ apiKey;
 
-  /*var service = new google.maps.places.AutocompleteService();
-  var geocoder = new google.maps.Geocoder();
-
-  $(field).typeahead({
-  source: function(query, process) {
-    service.getPlacePredictions({ input: query }, function(predictions, status) {
-      if (status == google.maps.places.PlacesServiceStatus.OK) {
-        process($.map(predictions, function(prediction) {
-          return prediction.description;
-        }));
-      }
-    });
-  },
-  updater: function (item) {
-    geocoder.geocode({ address: item }, function(results, status) {
-      if (status != google.maps.GeocoderStatus.OK) {
-        alert('Cannot find address');
-        return;
-      }
-      map.setCenter(results[0].geometry.location);
-      map.setZoom(12);
-    });
-    return item;
-  }
-});*/
-
-
-
-  $scope.travellingNow = true;
-
-
-
-
-    $scope.swiped = function(direction) {
-      alert('Swiped ' + direction);
-    };
-
-
-  // User agent displayed in home page
-  $scope.userAgent = navigator.userAgent;
-
-  // Needed for the loading screen
-  $rootScope.$on('$routeChangeStart', function(){
-    $rootScope.loading = true;
-  });
-
-  $rootScope.$on('$routeChangeSuccess', function(){
-    $rootScope.loading = false;
-  });
-
-  // Fake text i used here and there.
-  $scope.lorem = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel explicabo, aliquid eaque soluta nihil eligendi adipisci error, illum corrupti nam fuga omnis quod quaerat mollitia expedita impedit dolores ipsam. Obcaecati.';
-
-  //
-  // 'Scroll' screen
-  //
-  var scrollItems = [];
-
-  for (var i=1; i<=100; i++) {
-    scrollItems.push('Item ' + i);
-  }
-
-  $scope.scrollItems = scrollItems;
-
-  $scope.bottomReached = function() {
-    /* global alert: false; */
-    alert('Congrats you scrolled to the end of the list!');
+  $scope.travelOptions = {
+    'driving': {
+      'distance': '',
+      'distanceVal': 0,
+      'time': '',
+      'timeVal': 0,
+      'cost': 0,
+      'origin': {
+        'x': 0,
+        'y': 0
+      },
+      'destination': {
+        'x': 0,
+        'y': 0
+      },
+      'parkingOptions': []
+    },
+    'publicTrans': {
+      'time': '',
+      'timeVal': 0,
+      'cost': 0,
+      'transMethod': ''
+    },
+    'bike': {
+      'distanceVal': 0,
+      'time': '',
+      'timeVal': 0,
+      'calories': 0
+    }
   };
 
-  //
-  // Right Sidebar
-  //
-  $scope.chatUsers = [
-    { name: 'Carlos  Flowers', online: true },
-    { name: 'Byron Taylor', online: true },
-    { name: 'Jana  Terry', online: true },
-    { name: 'Darryl  Stone', online: true },
-    { name: 'Fannie  Carlson', online: true },
-    { name: 'Holly Nguyen', online: true },
-    { name: 'Bill  Chavez', online: true },
-    { name: 'Veronica  Maxwell', online: true },
-    { name: 'Jessica Webster', online: true },
-    { name: 'Jackie  Barton', online: true },
-    { name: 'Crystal Drake', online: false },
-    { name: 'Milton  Dean', online: false },
-    { name: 'Joann Johnston', online: false },
-    { name: 'Cora  Vaughn', online: false },
-    { name: 'Nina  Briggs', online: false },
-    { name: 'Casey Turner', online: false },
-    { name: 'Jimmie  Wilson', online: false },
-    { name: 'Nathaniel Steele', online: false },
-    { name: 'Aubrey  Cole', online: false },
-    { name: 'Donnie  Summers', online: false },
-    { name: 'Kate  Myers', online: false },
-    { name: 'Priscilla Hawkins', online: false },
-    { name: 'Joe Barker', online: false },
-    { name: 'Lee Norman', online: false },
-    { name: 'Ebony Rice', online: false }
-  ];
-
-  //
-  // 'Forms' screen
-  //
-  $scope.rememberMe = true;
-  $scope.email = 'me@example.com';
-
-  $scope.login = function() {
-    alert('You submitted the login form');
+  $scope.origin = {
+    text: '15 bentham street adelaide'
   };
 
-  //
-  // 'Drag' screen
-  //
-  $scope.notices = [];
+  $scope.destination = {
+    text: '25b second street brompton'
+  };
 
-  for (var j = 0; j < 10; j++) {
-    $scope.notices.push({icon: 'envelope', message: 'Notice ' + (j + 1) });
-  }
+  $scope.getData = function() {
+    var directionsService = new google.maps.DirectionsService();
 
-  $scope.deleteNotice = function(notice) {
-    var index = $scope.notices.indexOf(notice);
-    if (index > -1) {
-      $scope.notices.splice(index, 1);
+    // Get driving info
+    var directionsRequestDrive = {
+      origin: $scope.origin.text,
+      destination: $scope.destination.text,
+      travelMode: 'DRIVING'
+    }
+
+    directionsService.route(directionsRequestDrive, function(resp, status) {
+      console.log(resp);
+      if (resp.status != 'ZERO_RESULTS') {
+        $scope.travelOptions.driving.distance = resp.routes[0].legs[0].distance.text;
+        $scope.travelOptions.driving.distanceVal = resp.routes[0].legs[0].distance.value;
+        $scope.travelOptions.driving.time = resp.routes[0].legs[0].duration.text;
+        $scope.travelOptions.driving.timeVal = resp.routes[0].legs[0].duration.value;
+        $scope.travelOptions.driving.origin.y = resp.routes[0].legs[0].start_location.lat();
+        $scope.travelOptions.driving.origin.x = resp.routes[0].legs[0].start_location.lng();
+        $scope.travelOptions.driving.destination.y = resp.routes[0].legs[0].end_location.lat();
+        $scope.travelOptions.driving.destination.x = resp.routes[0].legs[0].end_location.lng();
+
+        // Calc driving costs
+        var dist = resp.routes[0].legs[0].distance.value;
+        $scope.travelOptions.driving.cost = (dist/1000 * 0.19) + 7.00;
+
+        var arrivalTime = new Date();
+        arrivalTime.setSeconds(arrivalTime.getSeconds() + $scope.travelOptions.driving.timeVal);
+        var requiredParkingTime = 200;
+
+        var getOptions = calulateParkingOptions($scope.travelOptions.driving.destination.x, $scope.travelOptions.driving.destination.y,
+            (arrivalTime.getHours().toString() + arrivalTime.getMinutes().toString()), arrivalTime.getDay() == 0 ? 7 : arrivalTime.getDay(),
+            requiredParkingTime, false);
+
+        getOptions.then(function() {
+          console.log('PROCESSING COMPLETE');
+          // Go to options page
+          // $location.path('/options');
+        });
+      }
+    });
+
+    // Get Metro info
+    // var directionsRequestTrans = {
+    //   origin: $scope.origin.text,
+    //   destination: $scope.destination.text,
+    //   travelMode: 'TRANSIT'
+    // }
+    //
+    // directionsService.route(directionsRequestTrans, function(resp, status) {
+    //   console.log(resp);
+    //   if (resp.status != 'ZERO_RESULTS') {
+    //     $scope.travelOptions.publicTrans.time = resp.routes[0].legs[0].duration.text;
+    //     $scope.travelOptions.publicTrans.timeVal = resp.routes[0].legs[0].duration.value;
+    //
+    //     for (i = 0; i < resp.routes[0].legs[0].steps.length; i++) {
+    //       var instructions = resp.routes[0].legs[0].steps[i].instructions;
+    //       if (instructions.search('bus') != -1 || instructions.search('Bus') != -1) {
+    //         $scope.travelOptions.publicTrans.transMethod += 'Bus, ';
+    //       }
+    //       if (instructions.search('station') != -1 || instructions.search('Station') != -1 || instructions.search('train') != -1 || instructions.search('Train') != -1) {
+    //         $scope.travelOptions.publicTrans.transMethod += 'Train, ';
+    //       }
+    //     }
+    //
+    //     // Calculate metro costs
+    //     var now = new Date();
+    //     if ((now.getHours() < 9 || now.getHours() > 15 || now.getDay() == 6) && now.getDay() != 0) {
+    //       $scope.travelOptions.publicTrans.cost = 3.54;
+    //     } else {
+    //       $scope.travelOptions.publicTrans.cost = 1.94;
+    //     }
+    //   }
+    //   metroRef.resolve();
+    // });
+    //
+    // // Get biking info
+    // var directionsRequestTrans = {
+    //   origin: $scope.origin.text,
+    //   destination: $scope.destination.text,
+    //   travelMode: 'BICYCLING'
+    // }
+    //
+    // directionsService.route(directionsRequestTrans, function(resp, status) {
+    //   console.log(resp);
+    //   if (resp.status != 'ZERO_RESULTS') {
+    //     $scope.travelOptions.bike.timeVal = resp.routes[0].legs[0].duration.value;
+    //     $scope.travelOptions.bike.time = resp.routes[0].legs[0].duration.text;
+    //     $scope.travelOptions.bike.distanceVal = resp.routes[0].legs[0].distance.value;
+    //   }
+    //   bikeRef.resolve();
+    // });
+
+    console.log($scope.travelOptions);
+
+    function calulateParkingOptions(x, y, time, day, requireTime, freeOnly) {
+      var def = $q.defer();
+      console.log(x, y, time, day, requireTime, freeOnly);
+      $scope.travelOptions.driving.parkingOptions = ['number 1', 'number 2'];
+
+      //TODO: james put your stuff in here!!
+
+      return def.promise;
     }
   };
 });
