@@ -274,11 +274,11 @@ app.controller('MainController', function($rootScope, $scope, $location, $q, $in
   };
 
   $scope.origin = {
-    text: '25b second street brompton'
+    text: ''
   };
 
   $scope.destination = {
-    text: '15 bentham street adeladie'
+    text: ''
   };
 
   $scope.changePage = function() {
@@ -612,15 +612,15 @@ app.controller('MainController', function($rootScope, $scope, $location, $q, $in
         };
 
         // Standard
-        if (duration <= 1)
+        if (duration <= 100)
             return 5;
-        if (duration <= 2)
+        if (duration <= 200)
             return 8.50;
-        if (duration <= 3)
+        if (duration <= 300)
             return 11;
-        if (duration <= 4)
+        if (duration <= 400)
             return 15;
-        if (duration <= 5)
+        if (duration <= 500)
             return 18;
         return 21;
     };
